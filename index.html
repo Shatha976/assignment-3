@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Portfolio</title>
+  <title>Shatha Alharbi - Portfolio</title>
   <link rel="stylesheet" href="./css/styles.css">
   <script src="./js/script.js" defer></script>
 </head>
@@ -22,19 +22,45 @@
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- Hero with Dynamic Background -->
+  <section class="hero" id="hero-section">
+    <div class="hero-overlay"></div>
     <div class="hero-container">
       <div class="hero-content">
-        <h1 class="hero-title">Hi, I'm Shatha</h1>
+        <h1 class="hero-title" id="greeting-title">Hi, I'm Shatha</h1>
         <p class="hero-subtitle">Software Engineering Student</p>
         <p class="hero-description">
           I'm a software engineering student passionate about turning ideas into smart and practical software.
           I enjoy coding, problem-solving, and creating solutions that make life easier and more efficient.
         </p>
+        
+        <!-- Visitor Stats Card -->
+        <div class="visitor-stats">
+          <div class="stat-item">
+            <span class="stat-icon">⏱️</span>
+            <span class="stat-label">Time on site:</span>
+            <span class="stat-value" id="session-timer">00:00</span>
+          </div>
+          <button id="refresh-bg-btn" class="refresh-bg-btn" title="Get new background image">
+            🔄 Change Background
+          </button>
+        </div>
       </div>
     </div>
   </section>
+  
+  <!-- Name Input Modal -->
+  <div id="name-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Welcome! 👋</h2>
+      <p>Let me know your name so I can personalize your experience:</p>
+      <input type="text" id="visitor-name-input" placeholder="Enter your name" maxlength="50" />
+      <div class="modal-actions">
+        <button id="save-name-btn" class="btn-primary">Save Name</button>
+        <button id="skip-name-btn" class="btn-secondary">Skip</button>
+      </div>
+    </div>
+  </div>
 
   <!-- About Section -->
   <section id="about" class="about">
@@ -71,11 +97,11 @@
       <!-- Project 1: Zakii -->
       <div class="project-card fade-in">
         <div class="project-image" aria-label="Zakii project image">
-          <img class="project-img" src="./assests/Screenshot 2025-09-25 170044.png" loading="lazy" alt="Screenshot of Zakii – Zakat Calculator Web App" />
+          <img class="project-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=520&fit=crop&q=80" loading="lazy" alt="Calculator and financial planning - Zakii Zakat Calculator" />
         </div>
         <h3 class="project-title">Zakii – Zakat Calculator Web App</h3>
         <p class="project-description">
-          A simple and user-friendly web application that helps users calculate their zakat (2.5% of savings) instantly. Built with HTML, CSS, and JavaScript, the app features an Arabic interface, responsive design, and real-time calculation. It also includes a clear call-to-action for payments and a clean UI optimized for accessibility and mobile use.
+          A simple and user-friendly web application that helps users calculate their zakat (2.5% of savings) instantly. Built with HTML, CSS, and JavaScript, the app features an Arabic interface, responsive design, and real-time calculation.
         </p>
         <div class="project-tech">
           <span class="tech-tag">HTML</span>
@@ -91,11 +117,11 @@
       <!-- Project 2: KFUPM Registration System -->
       <div class="project-card fade-in">
         <div class="project-image" aria-label="KFUPM Registration System image">
-          <img class="project-img" src="./assests/d2be0e9c-2b85-4a0b-8fc6-57a95e564770.jpg" alt="Screenshot of KFUPM Registration System (Java/JavaFX)" loading="lazy" />
+          <img class="project-img" src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=520&fit=crop&q=80" alt="Coding workspace - KFUPM Registration System" loading="lazy" />
         </div>
         <h3 class="project-title">KFUPM Registration System</h3>
         <p class="project-description">
-          A practical software application developed for the SWE-206 course to streamline the activity reservation process at KFUPM. Built with a focus on usability and efficiency, the system provides a clean, user-friendly interface that simplifies registrations and supports effective management of student activities.
+          A practical software application developed for the SWE-206 course to streamline the activity reservation process at KFUPM. Built with a focus on usability and efficiency, the system provides a clean, user-friendly interface.
         </p>
         <div class="project-tech">
           <span class="tech-tag">Java</span>
@@ -110,59 +136,55 @@
   </section>
 
   <!-- Contact Section -->
-<section id="contact" class="contact">
-  <div class="section">
-    <h2 class="section-title fade-in">Get In Touch</h2>
+  <section id="contact" class="contact">
+    <div class="section">
+      <h2 class="section-title fade-in">Get In Touch</h2>
 
-    <form class="contact-form fade-in" id="contact-form">
-      <div class="form-group">
-        <label for="name" class="form-label">Name</label>
-        <input type="text" id="name" name="name" class="form-input" required />
-      </div>
-
-      <div class="form-group">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" id="email" name="email" class="form-input" required />
-      </div>
-
-      <div class="form-group">
-        <label for="message" class="form-label">Message</label>
-        <textarea id="message" name="message" class="form-input form-textarea" required></textarea>
-      </div>
-
-      <!-- AI Enhancement -->
-      <div class="ai-enhance">
-        <div class="form-actions">
-          <button id="aiEnhanceBtn" type="button" class="ai-main-btn-left">✨ Enhance with AI</button>
-          <button type="submit" class="submit-button">Send Message</button>
+      <form class="contact-form fade-in" id="contact-form">
+        <div class="form-group">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" name="name" class="form-input" required />
         </div>
 
-        <div id="aiOptions" class="ai-options hidden">
-          <button type="button" class="ai-option" data-action="professional">💼 Make Professional</button>
-          <button type="button" class="ai-option" data-action="friendly">😊 Make Friendly</button>
-          <button type="button" class="ai-option" data-action="concise">🧹 Make Concise</button>
-          <button type="button" class="ai-option" data-action="grammar">✅ Fix Grammar</button>
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" name="email" class="form-input" required />
         </div>
-      </div>
-    </form>
-  </div>
-</section>
 
-<!-- ============================ -->
-<!-- GitHub Projects Section -->
-<!-- ============================ -->
-<section id="github" class="section fade-in">
-  <h2 class="section-title"> My GitHub Projects</h2>
+        <div class="form-group">
+          <label for="message" class="form-label">Message</label>
+          <textarea id="message" name="message" class="form-input form-textarea" required></textarea>
+        </div>
 
-  <div id="github-container" class="github-grid">
-    <p id="github-status" class="github-status">Loading repositories...</p>
-  </div>
+        <!-- AI Enhancement -->
+        <div class="ai-enhance">
+          <div class="form-actions">
+            <button id="aiEnhanceBtn" type="button" class="ai-main-btn-left">✨ Enhance with AI</button>
+            <button type="submit" class="submit-button">Send Message</button>
+          </div>
 
-  <div class="github-actions">
-    <button id="reload-github" class="btn"> Reload Projects</button>
-  </div>
-</section>
-</body>
-</html>
+          <div id="aiOptions" class="ai-options hidden">
+            <button type="button" class="ai-option" data-action="professional">💼 Make Professional</button>
+            <button type="button" class="ai-option" data-action="friendly">😊 Make Friendly</button>
+            <button type="button" class="ai-option" data-action="concise">🧹 Make Concise</button>
+            <button type="button" class="ai-option" data-action="grammar">✅ Fix Grammar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- GitHub Projects Section -->
+  <section id="github" class="section fade-in">
+    <h2 class="section-title">My GitHub Projects</h2>
+
+    <div id="github-container" class="github-grid">
+      <p id="github-status" class="github-status">Loading repositories...</p>
+    </div>
+
+    <div class="github-actions">
+      <button id="reload-github" class="btn">🔄 Reload Projects</button>
+    </div>
+  </section>
 </body>
 </html>
